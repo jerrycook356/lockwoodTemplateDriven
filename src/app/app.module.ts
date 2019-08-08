@@ -11,6 +11,9 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BsDatepickerModule} from 'ngx-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {InfoByStockpileResultsComponent} from './info-by-stockpile/info-by-stockpile-results/info-by-stockpile-results';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {SummaryInfoResultsComponent} from './summary-info/summary-info-results/summary-info-results.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     InfoByStockpileComponent,
     SummaryInfoComponent,
     AboutComponent,
+    InfoByStockpileResultsComponent,
+    SummaryInfoResultsComponent,
 
   ],
   imports: [
@@ -28,6 +33,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
+    ScrollingModule,
 
 
   ],

@@ -1,0 +1,68 @@
+<div class = "container-fluid">
+  <div class = "row">
+<div class = "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <br>
+      <br>
+      <br>
+      <form (ngSubmit)="onSubmit(f)" #f = "ngForm">
+        <div class = "form-group">
+        <label for = "customerSelected"
+        id = "customerLabel">Customer</label>
+          <select id = "customerSelected"
+                  class = "form-control"
+                  name  = "customerSelected"
+                  [(ngModel)]="customerFinal"
+                  required>
+            <option [ngValue]="customer" *ngFor="let customer of customers; let i = index"
+            >{{customer}}</option>
+          </select>
+
+          <label for = "source"
+                 id = "sourceLabel">Source</label>
+          <select id = "source"
+                  class = "form-control"
+                  name = "source"
+                  [(ngModel)]="sourceFinal"
+                  required>
+            <option [value] = "source" *ngFor = "let source of sources">{{source}}</option>
+          </select>
+
+          <label for = "destination"
+                 id = "destinationLabel">Destination</label>
+          <select class = "form-control"
+                  id = "destination"
+                  name="destination"
+                  [(ngModel)]="destinationFinal"
+                  required>
+            <option [value]= "destination" *ngFor = "let destination of destinations">{{destination}}</option>
+          </select>
+        </div>
+        <div class = "form-group">
+          <label for = "startDate">Start Date</label>
+          <input id = "startDate"
+                 name = "startDate"
+                 required
+                 [(ngModel)] = "startDateString"
+                 type = "date"
+                 class = "form-control">
+          <label for = "endDate">End Date</label>
+          <input id = "endDate"
+                 name = "endDate"
+                 required
+                 [(ngModel)] = "endDateFinal"
+                 type = "date"
+                 class = "form-control">
+        </div>
+        <button class = "btn btn-success"
+        type = "submit"
+        [disabled]="!f.valid">Submit</button>
+        <br>
+        <br>
+        <div *ngIf = "isSubmitted && noData">
+          <p> There is no data for this selection, check selections!</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {TransactionModel} from './Shared/transaction.model';
 @Injectable ({providedIn: 'root'})
 
 export class HttpService {
@@ -31,16 +32,73 @@ export class HttpService {
   }
   // called if on the local network
   fetchSourcesLocal() {
-    const getSoursesString = this.dbUrl3 + '/getSources';
-    return this.http.get(getSoursesString);
+    const getSourcesString = this.dbUrl3 + '/getSources';
+    return this.http.get(getSourcesString);
   }
-
+  // get destinations from database if on outside network
   fecthDesinations() {
     const getDestinationString = this.dbUrl + '/getDestinations';
     return this.http.get(getDestinationString);
   }
+  // get destinations from database if on local network
   fetchDestinationsLocal() {
     const getDestinationString = this.dbUrl3 + '/getDestinations';
     return this.http.get(getDestinationString);
   }
+  // get by selection outside network
+    getBySelection(startDateString: string, endDateString: string, sourceString: string,
+                   destinationString: string, customerString: string) {
+
+    const getBySelectionString  = this.dbUrl + '/getBySelection';
+    return this.http.get<TransactionModel[]>(getBySelectionString,
+      {
+        params: {
+          startDate: startDateString,
+          endDate: endDateString,
+          source: sourceString,
+          destination: destinationString,
+          customer: customerString
+        }
+      }
+    ).toPromise();
+
+  }
+
+  // get by selection local network
+   getBySelectionLocal(startDateString: string, endDateString: string, sourceString: string,
+                       destinationString: string, customerString: string) {
+    const getBySelectionStringLocal = this.dbUrl3 + '/getBySelection';
+    return   this.http.get<TransactionModel[]>(getBySelectionStringLocal, {
+      params: {
+        startDate: startDateString,
+        endDate: endDateString,
+        source: sourceString,
+        destination: destinationString,
+        customer: customerString
+      }
+    }).toPromise();
+  }
+  // get summary outside local network
+  getSummary(startDateString: string, endDateString: string, customerString: string) {
+    const getSummaryString = this.dbUrl + '/getSummary';
+    return this.http.get<TransactionModel[]>(getSummaryString, {
+      params: {
+        startDate: startDateString,
+        endDate: endDateString,
+        customer: customerString
+      }
+    }).toPromise();
+  }
+  // get summary if on local network
+  getSummaryLocal(startDateString: string, endDateString: string, customerString: string) {
+    const getSummaryLocalString = this.dbUrl3 + '/getSummary';
+    return this.http.get<TransactionModel[]>(getSummaryLocalString, {
+      params: {
+        startDate: startDateString,
+        endDate: endDateString,
+        customer: customerString
+      }
+    }).toPromise();
+  }
+
 }
