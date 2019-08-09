@@ -1,24 +1,43 @@
-<div class = "container-fluid"></div>
-<div class = "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+<div class = "container-fluid">
   <div class = "row">
-    <br>
-    <h1>Get Summary</h1>
-    <hr>
-    <form (ngSubmit)="onSubmit(f)" #f = "ngForm">
-      <div class = "form-group">
-        <label for = "startDate">Start Date</label>
-        <input id = "startDate"
-               name = "startDate"
-               required
-               type = "date"
-               [(ngModel)]="startDateString">
-        <label for = "endDate">End Date</label>
-        <input id = "endDate"
-               name = "endDate"
-               required
-               type = "date"
-               [(ngModel)] = "endDateString">
-      </div>
-    </form>
+    <div class = "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <br>
+      <br>
+      <br>
+      <h1>Summary Information</h1>
+      <form (ngSubmit)="onSubmit(f)" #f = "ngForm">
+        <div class = "form-group">
+          <label for = "StartDate">Start Date</label>
+          <input id = "startDate"
+                 name = "startDate"
+                 required
+                 type = "date"
+                 [(ngModel)]="startDateString"
+                  class = "form-control">
+          <div>
+          <label for = "endDate">End Date</label>
+          <input id = "endDate"
+                 name = "endDate"
+                 required
+                 type="date"
+                 [(ngModel)]="endDateString"
+                 class = "form-control">
+          </div>
+        </div>
+        <br>
+        <hr>
+        <div>
+            <button class = "btn btn-success"
+            type = "submit"
+            [disabled]="!f.valid">Submit</button>
+        </div>
+        <div *ngIf ="noData">
+          <br>
+          <hr>
+          <p>No Data for selection, Check Selections!</p>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
+

@@ -25,8 +25,8 @@ export class SummaryInfoComponent implements OnInit {
 
   onSubmit(form: NgForm) {
 
-    this.startDateString += '00:00:00.000000';
-    this.endDateString += '23:59:59.000000';
+    this.startDateString += ' 00:00:00.000000';
+    this.endDateString += ' 23:59:59.000000';
     this.transactionService.getSummary(this.startDateString, this.endDateString, this.customerString).then( data => {
       if (this.transactionService.getTransactionResults().length !== 0) {
         form.resetForm();

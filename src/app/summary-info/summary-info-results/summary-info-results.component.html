@@ -6,8 +6,7 @@
       <h1>Summary Results</h1>
       <hr>
       <div>
-        <p *ngIf = "transactions.length != 0">have transactions to display</p>
-        <br>
+        <p *ngFor = "let entry of stringArray">{{entry}}</p>
         <a routerLink="/summary-info">
         <button class = "btn btn-success">Done</button>
         </a>
